@@ -26,7 +26,7 @@ sub validate {
 		my $sqlresult = $self->exec_sql("SELECT recipient FROM recipient_blacklist");
 				 
 		while (my $res = $sqlresult->fetchrow_hashref()) {
-			if ($self->attr->{'recipient'} =~ /$res->{'recipient'}/) {
+			if ($self->attr->{'recipient'} =~ /$res->{'recipient'}/i) {
 				$self->log('info','Recipient address [%s] blocked by blacklist',$self->attr->{'recipient'});
 				return $self->set_action('reject');
 			}

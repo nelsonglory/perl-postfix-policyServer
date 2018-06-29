@@ -30,7 +30,7 @@ sub validate {
 		# go through results
 		while(my $sender = $sqlresult->fetchrow_array) {
 			# check sender
-			if ($self->attr->{'sender'} =~ /^$sender$/) {
+			if ($self->attr->{'sender'} =~ /^$sender$/i) {
 				$self->log('info','Sender address [%s] -> recipient address [%s] blocked by user blacklist',$self->attr->{'sender'},$self->attr->{'recipient'});
 				return $self->set_action('reject');
 			}

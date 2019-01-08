@@ -1,0 +1,11 @@
+[Unit]
+Description=policyServer daemon
+After=network.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/policyServer.pid
+ExecStart=/usr/local/sbin/policyServer.pl
+
+[Install]
+WantedBy=multi-user.target

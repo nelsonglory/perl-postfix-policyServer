@@ -56,7 +56,7 @@ sub validate {
 	if ($self->attr->{'recipient_count'} > $LIMITS->{'maxRecipientsPerMail'}) {
 		my $msg = sprintf('User [%s] exceeded maxRecipientsPerMail limit [%u > %u]',$self->attr->{'sasl_username'},$self->attr->{'recipient_count'},$LIMITS->{'maxRecipientsPerMail'});
 		$self->log('info',$msg);
-		return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user($self->attr->{'sasl_username'},'maxRecipientsPerMail',$msg);
+		return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user('maxRecipientsPerMail',$msg);
 	}
 		
 	# check user mails of the last minute
@@ -69,7 +69,7 @@ sub validate {
 	if ($res->{'total'} >  $LIMITS->{'maxRecipientsPerMinute'}->{'maxcount'}) {
 		my $msg = sprintf('User [%s] reached maxRecipientsPerMinute limit [%u mails > %u recipients]',$self->attr->{'sasl_username'},$LIMITS->{'maxRecipientsPerMinute'}->{'maxcount'}, $LIMITS->{'maxRecipientsPerMinute'}->{'recipients'});
 		$self->log('info',$msg);
-		return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user($self->attr->{'sasl_username'},'maxRecipientsPerMinute',$msg);
+		return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user('maxRecipientsPerMinute',$msg);
 	}
 
 	# connection count of the last hour
@@ -81,7 +81,7 @@ sub validate {
 	if ($res->{'total'} >  $LIMITS->{'maxConnPerHour'}) {
 		my $msg = sprintf('User [%s] reached maxConnPerHour limit [%u]',$self->attr->{'sasl_username'},$LIMITS->{'maxConnPerHour'});
 		$self->log('info',$msg);
-                return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user($self->attr->{'sasl_username'},'maxConnPerHour',$msg);
+                return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user('maxConnPerHour',$msg);
         }
 
 	# recipients per day
@@ -93,7 +93,7 @@ sub validate {
 	if ($res->{'total'} >  $LIMITS->{'maxRecipientsPerDay'}) {
 		my $msg = sprintf('User [%s] reached maxRecipientsPerDay limit [%u]',$self->attr->{'sasl_username'},$LIMITS->{'maxRecipientsPerDay'});
 		$self->log('info',$msg);
-                return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user($self->attr->{'sasl_username'},'maxRecipientsPerDay',$msg);
+                return $self->_is_allowed_spammer ? $self->set_action('permit') : $self->_block_user('maxRecipientsPerDay',$msg);
         }
 	# seems to be ok
 	return $self->set_action('permit');

@@ -22,8 +22,7 @@ check_policy_service inet:<server>:<port>
 - The location of the config file is statically written in policyServer.pl
 - The sequence of the plugin written in policyServer.conf is essential - accounting.pm has to be the first in list.
 - The plugin configuration has to be done directly in the plugins below the directory policyServer-plugins
-  -plugin.pm:  Mail recipient configuration uses by plugins to be able to inform an user.  
-               The plugin spamcheck.pm use this in case a user is blocked after spamming detection occured (see below).
+  - plugin.pm:  Mail recipient configuration uses by plugins to be able to inform an user. The plugin spamcheck.pm use this in case a user is blocked after spamming detection occured (see below).
   - spamcheck.pm: Change the spam detection limits according to your needs
   - senderReject.pm and recipientReject.pm: global sender (DB column sender_blacklist) and recipient (recipient_blacklist) blacklists (Regex)
   - senderRecipientCheck.pm a per user blacklist (Regex).

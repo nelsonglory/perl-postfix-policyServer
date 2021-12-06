@@ -9,7 +9,7 @@ http://www.postfix.org/SMTPD_POLICY_README.html
 - Add policyServer.service script to your systemd service directory (e.g. /etc/systemd/system) and enable it.
 
 **Postfix configuration:**
-Add the following lines of code to your main.cfg below smtpd_recipient_restrictions:
+Add the following line to your postfix main.cfg below smtpd_recipient_restrictions:
 ```
 check_policy_service inet:<server>:<port>
 <server> is either localhost if policyServer.pl runs on the same machine or the name of the server you installed the script.
